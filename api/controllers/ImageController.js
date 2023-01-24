@@ -10,6 +10,7 @@ export const getAllImages = async (req,res)=>{
             ]
         })
         images = images.map((image)=> image.imagen1)
+
         res.json(images)
     } catch (error) {
         res.json( {message: error.message})
@@ -18,9 +19,10 @@ export const getAllImages = async (req,res)=>{
 
 //Mostrar un usuario
 export const getImage = async(req,res)=>{
+    //console.log(req.paramas.id);
     try {
         const image = await ImageModel.findAll({
-            where:{ id :req.paramas.id}
+            where:{ id :req.params.id}
         })
         res.json(image[0])
     } catch (error) {
