@@ -5,10 +5,10 @@ import { getAllUsers, getUser } from '../controllers/UserController.js'
 const router = express.Router()
 
 router.get('/', getAllProducts)
-//router.get('/users', getAllUsers)
+router.get('/users', getAllUsers)
 router.get('/images', getAllImages)
 router.get('/images/:id', getImage)
-//router.get('/users/:id', getUser)
+router.post('/users', getUser)
 router.get('/:id', getProduct)
 
 

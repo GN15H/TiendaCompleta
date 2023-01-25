@@ -1,4 +1,5 @@
 import ImageModel from "../models/ImageModel.js"
+import db from "../database/db.js"
 
 //mostrar todas las imagenes
 

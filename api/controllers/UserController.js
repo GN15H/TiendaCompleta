@@ -15,14 +15,20 @@ export const getAllUsers = async (req, res)=>{
 export const getUser = async(req,res)=>{
     try {
         const user = await UserModel.findAll({
-            where:{ id:req.params.id}
+            where:{ username:req.body.username,
+                    password:req.body.password}
         })
-        res.json(user[0])
+        if (user.length !== 1){
+            return res.json('Usuario no valido')
+        }else{
+            return res.json(user[0])
+        }    
     } catch (error) {
         res.json( {message: error.message})
     }
 }
 
+/*
 //crear un usuario
  export const createUser = async (req, res) =>{
     try {
@@ -34,3 +40,4 @@ export const getUser = async(req,res)=>{
         res.json( {message: error.message})
     }
  }
+ */
