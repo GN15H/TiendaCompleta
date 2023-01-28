@@ -1,5 +1,5 @@
 import express from 'express'
-import { getAllProducts, getProduct } from '../controllers/BlogController.js'
+import { getAllProducts, getProduct, updateProduct } from '../controllers/BlogController.js'
 import { getAllImages, getImage } from '../controllers/ImageController.js'
 import { createUser, getAllUsers, getUser } from '../controllers/UserController.js'
 const router = express.Router()
@@ -10,6 +10,7 @@ router.get('/images', getAllImages)
 router.get('/images/:id', getImage)
 router.post('/users', getUser)
 router.post('/reg',createUser)
+router.put('/:id', updateProduct)
 router.get('/:id', getProduct)
 
 

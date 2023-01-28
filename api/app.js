@@ -18,10 +18,11 @@ try {
     console.log(`El error de conexion es: ${error}`);
 }
 
-
+/*
 app.get('/', (req,res)=>{
     res.send("HOLA MUNDO")
 })
+*/
 
 
 app.listen(8000, ()=>{
