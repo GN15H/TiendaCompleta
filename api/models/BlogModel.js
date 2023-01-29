@@ -7,7 +7,9 @@ const ProductModel = db.define('productos', {
     descripcion: { type: DataTypes.STRING},
     precio: { type: DataTypes.NUMBER},
     createdBy: { type: DataTypes.NUMBER},
-    stock: { type: DataTypes.NUMBER}
+    stock: { type: DataTypes.NUMBER},
+    minStock: { type: DataTypes.NUMBER},
+    maxStock: { type : DataTypes.NUMBER}
 })
 
 export default ProductModel;
