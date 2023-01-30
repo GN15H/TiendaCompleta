@@ -1,4 +1,6 @@
 import ProductModel from "../models/BlogModel.js";
+import { productsStock, productsMinStock } from "../app.js";
+import { sendMail } from "../email/SendEmail.js";
 
 //Mostrar todos los registros
 
@@ -29,6 +31,9 @@ export const updateProduct = async (req, res) =>{
         await ProductModel.update(req.body, {
             where: { id: req.params.id}
         })
+        if (req.body.stock <= productsMinStock[req.params.id][0]){
+            sendMail(productsMinStock[req.params.id][1])
+        }
         res.json('Registro actualizado correctamente')
     }catch(error){
         res.json({message: error.message})
@@ -36,3 +41,21 @@ export const updateProduct = async (req, res) =>{
 }
 
 //crear un registro
+
+export const bookProduct = async (req, res) => {
+    try {
+        if (req.query.f === 'unbook'){
+            productsStock[req.params.id]++;
+            console.log(productsStock);
+            return res.json('Unbooked');
+        } else if (req.query.f === 'book') {
+            if (productsStock[req.params.id] == 0) return res.json('Stockout')
+            productsStock[req.params.id]--;
+            console.log(productsStock);
+            return res.json('Booked');
+        } 
+        res.status(400).json('Bad request');
+    } catch (error) {
+        res.json({message: error.message})
+    }
+}

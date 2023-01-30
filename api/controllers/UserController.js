@@ -39,3 +39,15 @@ export const getUser = async(req,res)=>{
     }
  }
  
+ //Update admin profile
+
+ export const updateUser = async (req, res) =>{
+    try{
+        await UserModel.update(req.body, {
+            where: { id: req.params.id}
+        })
+        res.json('Perfil actualizado correctamente')
+    }catch(error){
+        res.json({message: error.message})
+    }
+}

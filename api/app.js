@@ -1,9 +1,8 @@
 import express from "express";
 import cors from 'cors';
-
 import db from "./database/db.js"
-
 import productRoutes from './routes/routes.js'
+import ProductModel from "./models/BlogModel.js";
 
 const app = express()
 
@@ -18,13 +17,29 @@ try {
     console.log(`El error de conexion es: ${error}`);
 }
 
-/*
-app.get('/', (req,res)=>{
-    res.send("HOLA MUNDO")
-})
-*/
-
-
 app.listen(8000, ()=>{
     console.log('Server up running in localhost 8000');
 })
+
+
+const products = await ProductModel.findAll({
+    attributes: ["id", "stock"],
+    order: [["id","ASC"]]
+})
+
+const productsMin = await ProductModel.findAll({
+    attributes : ["id", "minStock", "nombreProducto"],
+    order: [["id","ASC"]]
+})
+
+let productsStock = {}
+let productsMinStock = {}
+products.forEach(product =>{
+    productsStock[product.dataValues.id] = product.dataValues.stock
+})
+productsMin.forEach(product =>{
+    productsMinStock[product.dataValues.id] = [product.dataValues.minStock, product.dataValues.nombreProducto]
+})
+
+export {productsStock, productsMinStock};
+
