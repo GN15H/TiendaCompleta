@@ -1,4 +1,6 @@
 import UserModel from "../models/UserModel.js";
+import { encrypt } from "../encrypt.js";
+
 
 //Mostrar registros de usuarios
 
@@ -16,7 +18,7 @@ export const getUser = async(req,res)=>{
     try {
         const user = await UserModel.findAll({
             where:{ username:req.body.username,
-                    password:req.body.password}
+                    password:encrypt(req.body.password)}
         })
         if (user.length !== 1){
             return res.json('Usuario no valido')
@@ -32,7 +34,7 @@ export const getUser = async(req,res)=>{
 //crear un usuario
  export const createUser = async (req, res) =>{
     try {
-       await UserModel.create(req.body)
+       await UserModel.create({...req.body, password: encrypt(req.body.password)})
        res.json('Exito')
     } catch (error) {
         res.json( {message: error.message})
@@ -43,7 +45,7 @@ export const getUser = async(req,res)=>{
 
  export const updateUser = async (req, res) =>{
     try{
-        await UserModel.update(req.body, {
+        await UserModel.update({...req.body,password : encrypt(req.body.password)}, {
             where: { id: req.params.id}
         })
         res.json('Perfil actualizado correctamente')
@@ -51,3 +53,5 @@ export const getUser = async(req,res)=>{
         res.json({message: error.message})
     }
 }
+
+console.log(encrypt('123'));

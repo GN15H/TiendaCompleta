@@ -20,6 +20,5 @@ function sendMail(prod) {
     .catch(console.catch)
 }
 
-//main('pitomor')
 
 export {sendMail};
