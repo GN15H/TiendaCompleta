@@ -7,7 +7,7 @@ import ProductModel from "./models/BlogModel.js"; //importacion del modelo de pr
 
 const app = express()
 
-app.use( cors()) //uso de cors para 
+app.use( cors()) //uso de cors para solucionar problemas con la conexion de la base de datos
 app.use(express.json())
 app.use('/productos', productRoutes)
 
