@@ -2,6 +2,7 @@ import db from '../database/db.js';
 
 import { DataTypes } from 'sequelize';
 
+//conexión con la tabla de imagenes mediante sequelize
 const UserModel = db.define('usuarios', {
     username: { type: DataTypes.STRING},
     password: { type: DataTypes.STRING},

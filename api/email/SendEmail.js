@@ -1,6 +1,7 @@
 import { text } from 'express';
 import nodemailer from 'nodemailer';
 
+//se crea el transportador del email con su información
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 587,
@@ -10,6 +11,7 @@ const transporter = nodemailer.createTransport({
     }
 })
 
+//funcion que ejecuta el procesode mandar el email junto con la información
 function sendMail(prod) {
     transporter.sendMail({
         from: `tienda <tiendafig@gmail.com`,

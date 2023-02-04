@@ -1,4 +1,5 @@
 import CryptoJS from "crypto-js";
+//funcion que encripta las contraseñas
 
 const key = "pollitoPOLLITE";
 

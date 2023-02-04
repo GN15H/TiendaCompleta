@@ -4,6 +4,7 @@ import { encrypt } from "../encrypt.js";
 
 //Mostrar registros de usuarios
 
+//Obtiene todos los registros de usuarios de la base de datos
 export const getAllUsers = async (req, res)=>{
     try {
         const users = await UserModel.findAll()
@@ -13,7 +14,7 @@ export const getAllUsers = async (req, res)=>{
     }
 }
 
-//mostrar un usuario
+//Obtiene un soo registro de usuario de la base de datos mediante el id
 export const getUser = async(req,res)=>{
     try {
         const user = await UserModel.findAll({
@@ -31,7 +32,7 @@ export const getUser = async(req,res)=>{
 }
 
 
-//crear un usuario
+//Crea un registro en la tabla de usuarios
  export const createUser = async (req, res) =>{
     try {
        await UserModel.create({...req.body, password: encrypt(req.body.password)})
@@ -41,8 +42,7 @@ export const getUser = async(req,res)=>{
     }
  }
  
- //Update admin profile
-
+ //Permite modificar el registro del usuario administrador
  export const updateUser = async (req, res) =>{
     try{
         await UserModel.update({...req.body,password : encrypt(req.body.password)}, {

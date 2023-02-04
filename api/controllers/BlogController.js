@@ -2,8 +2,7 @@ import ProductModel from "../models/BlogModel.js";
 import { productsStock, productsMinStock } from "../app.js";
 import { sendMail } from "../email/SendEmail.js";
 
-//Mostrar todos los registros
-
+//Obtiene todos los registros de los productos
 export const getAllProducts = async (req, res) =>{
     try {
         const blogs = await ProductModel.findAll()
@@ -13,7 +12,7 @@ export const getAllProducts = async (req, res) =>{
     }
 }
 
-//mostrar un registro
+//Obtiene un registro de la tabla de productos mediante el id
 export const getProduct = async (req,res)=>{
     try {
         const blog = await ProductModel.findAll({
@@ -26,6 +25,7 @@ export const getProduct = async (req,res)=>{
 
 }
 
+//Actualiza la información de un registro mediante el id
 export const updateProduct = async (req, res) =>{
     try{
         await ProductModel.update(req.body, {

@@ -1,8 +1,7 @@
 import ImageModel from "../models/ImageModel.js"
 import db from "../database/db.js"
 
-//mostrar todas las imagenes
-
+//Obtiene todas las primeras imagenes de cada registro
 export const getAllImages = async (req,res)=>{
     try {
         let images = await ImageModel.findAll({
@@ -18,7 +17,7 @@ export const getAllImages = async (req,res)=>{
     }
 }
 
-//Mostrar un usuario
+//Obtiene la primera imagen de un registro por el id
 export const getImage = async(req,res)=>{
     //console.log(req.paramas.id);
     try {

@@ -6,6 +6,7 @@ import { pay } from '../controllers/Payment.js'
 import { createUser, getAllUsers, getUser, updateUser } from '../controllers/UserController.js'
 const router = express.Router()
 
+//rutas que generan diferentes peticiones
 router.get('/', getAllProducts)
 router.get('/users', getAllUsers)
 router.get('/images', getAllImages)

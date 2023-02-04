@@ -2,6 +2,7 @@ import db from '../database/db.js';
 
 import { DataTypes } from "sequelize";
 
+//conexión con la tabla de productos mediante sequelize
 const ProductModel = db.define('productos', {
     nombreProducto: { type: DataTypes.STRING},
     descripcion: { type: DataTypes.STRING},
